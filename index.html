@@ -1,243 +1,100 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>형이야마케터 | 가격별 제공 내용</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가격별 제공 내용 - 형이야마케터</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        body { font-family: 'Pretendard', sans-serif; line-height: 1.8; padding: 40px 20px; max-width: 500px; margin: 0 auto; color: #111; background-color: #fff; word-break: keep-all; }
+        h1 { font-size: 28px; font-weight: 900; line-height: 1.35; margin-bottom: 15px; color: #000; letter-spacing: -1px; text-align: center; }
+        .subtitle { font-size: 18px; font-weight: 700; color: #666; text-align: center; margin-bottom: 50px; }
+        .highlight { font-weight: 800; background: linear-gradient(to top, #fff382 40%, transparent 40%); padding: 0 2px; }
+        
+        /* 서비스 카드 */
+        .service-card { background: #f8faff; border-radius: 25px; padding: 35px 25px; margin-bottom: 30px; border: 2px solid #eef2f8; }
+        .service-tag { display: inline-block; background: #3e5eff; color: #fff; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 8px; margin-bottom: 15px; letter-spacing: 0.5px; }
+        .service-title { font-size: 22px; font-weight: 900; margin-bottom: 10px; color: #000; }
+        .service-price { font-size: 32px; font-weight: 900; color: #3e5eff; margin-bottom: 20px; }
+        .service-desc { font-size: 15px; color: #555; margin-bottom: 25px; line-height: 1.7; }
+        .service-list { list-style: none; padding: 0; margin: 0; }
+        .service-list li { font-size: 15.5px; color: #333; margin-bottom: 12px; padding-left: 20px; position: relative; }
+        .service-list li:before { content: "·"; position: absolute; left: 0; font-weight: 900; color: #3e5eff; font-size: 18px; }
+        .service-note { font-size: 14px; color: #3e5eff; font-weight: 700; margin-top: 25px; padding: 15px; background: #eef2ff; border-radius: 12px; display: flex; align-items: flex-start; }
+        .service-note:before { content: "▶"; margin-right: 8px; flex-shrink: 0; }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-
-  <style>
-    :root{
-      --yellow:#FFD400;
-    }
-
-    body{
-      margin:0;
-      background:#ffffff;
-      font-family:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-      color:#111;
-      line-height:1.6;
-    }
-
-    .page{
-      max-width:430px;
-      margin:0 auto;
-      padding:40px 20px 50px;
-    }
-
-    .brand{
-      text-align:center;
-      font-size:0.9rem;
-      color:#666;
-      margin-bottom:18px;
-    }
-
-    .title{
-      text-align:center;
-      font-size:1.6rem;
-      font-weight:900;
-      line-height:1.4;
-      margin-bottom:48px;
-    }
-
-    .highlight{
-      background:linear-gradient(to top, var(--yellow) 55%, transparent 55%);
-      padding:0 4px;
-    }
-
-    /* 요약 문구 (디자인 깨지지 않게) */
-    .summary{
-      text-align:center;
-      margin-bottom:36px;
-      font-size:1rem;
-      font-weight:800;
-      line-height:1.7;
-    }
-
-    .summary span{
-      display:block;
-    }
-
-    .summary b{
-      background:linear-gradient(to top, var(--yellow) 55%, transparent 55%);
-      font-weight:900;
-      padding:0 2px;
-    }
-
-    .card{
-      border:1px solid #eaeaea;
-      border-radius:16px;
-      padding:22px 18px;
-      margin-bottom:18px;
-    }
-
-    .badge{
-      display:inline-block;
-      background:var(--yellow);
-      font-size:0.75rem;
-      font-weight:900;
-      padding:4px 8px;
-      margin-bottom:10px;
-    }
-
-    .card h3{
-      font-size:1.1rem;
-      font-weight:900;
-      margin-bottom:6px;
-    }
-
-    .price{
-      font-size:1.6rem;
-      font-weight:900;
-      margin-bottom:12px;
-    }
-
-    .desc{
-      font-size:0.95rem;
-      color:#444;
-      margin-bottom:14px;
-    }
-
-    .desc strong{
-      background:linear-gradient(to top, var(--yellow) 55%, transparent 55%);
-      font-weight:900;
-    }
-
-    .list{
-      font-size:0.9rem;
-      color:#333;
-    }
-
-    .list div{
-      margin-bottom:6px;
-    }
-
-    .result{
-      margin-top:14px;
-      padding-top:14px;
-      border-top:1px solid #f0f0f0;
-      font-size:0.95rem;
-      font-weight:900;
-    }
-
-    .footer{
-      margin-top:36px;
-      text-align:center;
-      font-size:1rem;
-      font-weight:900;
-      line-height:1.5;
-    }
-
-    .notice{
-      margin-top:18px;
-      font-size:0.85rem;
-      color:#666;
-      line-height:1.6;
-      text-align:center;
-    }
-  </style>
+        /* 하단 안내 */
+        .info-box { background: #fff; border: 2px solid #3e5eff; border-radius: 20px; padding: 30px 25px; margin-top: 50px; text-align: center; }
+        .info-title { font-size: 18px; font-weight: 900; color: #3e5eff; margin-bottom: 15px; }
+        .info-text { font-size: 15px; color: #333; line-height: 1.8; margin-bottom: 20px; }
+        .contact-btn { display: inline-block; background: #3e5eff; color: #fff; font-weight: 800; text-decoration: none; padding: 16px 40px; border-radius: 12px; font-size: 16px; transition: 0.2s; }
+        .contact-btn:hover { background: #2d47cc; }
+    </style>
 </head>
-
 <body>
+    <h1>가격별 제공 내용</h1>
+    <p class="subtitle">한눈에 보기</p>
 
-<div class="page">
+    <!-- 초기 세팅 -->
+    <div class="service-card">
+        <span class="service-tag">초기 세팅 · 1회</span>
+        <h2 class="service-title">네이버 플레이스 초기 세팅</h2>
+        <div class="service-price">88만 원</div>
+        <p class="service-desc">문의가 없다면, 원인은 <span class="highlight">고객이 클릭하지 않는다는 것</span>입니다.</p>
+        
+        <ul class="service-list">
+            <li>플레이스 대표 이미지 전면 교체</li>
+            <li>사진 노출 순서 전면 재구성</li>
+            <li>소개글 전체 재작성</li>
+            <li>핵심 키워드 2~3개 설정</li>
+            <li>서비스 카테고리 최적화</li>
+            <li>블로그 콘텐츠 10건</li>
+        </ul>
 
-  <div class="brand">
-    형이야마케터<br>
-    BRO MARKETER
-  </div>
+        <div class="service-note">조회수 대비 문의 전환율을 높입니다</div>
+    </div>
 
-  <div class="title">
-    가격별 제공 내용<br>
-    <span class="highlight">한눈에 보기</span>
-  </div>
+    <!-- 유지 관리 -->
+    <div class="service-card">
+        <span class="service-tag">유지 관리 · 월</span>
+        <h2 class="service-title">네이버 플레이스 중심 '매출 유지 관리'</h2>
+        <div class="service-price">88만 원 / 월</div>
+        <p class="service-desc">한 번 만들어진 초기 세팅도 <span class="highlight">방치하면 예약·문의부터 먼저 줄어듭니다.</span></p>
+        
+        <ul class="service-list">
+            <li>네이버 플레이스 / 블로그 운영</li>
+            <li>블로그 콘텐츠 10건 발행</li>
+            <li>검색 → 클릭 → 문의 이탈 구간 점검</li>
+            <li>네이버 이벤트·프로모션 (월 1회 기획·적용)</li>
+            <li>경쟁 가게 대비 노출 구조 수시 대응</li>
+        </ul>
 
-  <!-- 초기 세팅 -->
-  <div class="card">
-    <div class="badge">초기 세팅 · 1회</div>
-    <h3>네이버 플레이스 초기 세팅</h3>
-    <div class="price">55만 원</div>
-    <div class="desc">
-      네이버 플레이스는 이미 노출되고 있습니다.<br>
-      문제는 <strong>고객이 클릭할 이유가 없다는 것</strong>입니다.<br><br>
+        <div class="service-note">문의·예약 수가 떨어지지 않도록 관리합니다</div>
     </div>
-    <div class="list">
-      <div>· 플레이스 대표 이미지 전면 교체</div>
-      <div>· 사진 노출 순서 전면 재구성</div>
-      <div>· 소개글 전체 재작성</div>
-      <div>· 핵심 키워드 2~3개 설정</div>
-      <div>· 서비스 / 메뉴 구성 정리</div>
-      <div>· 블로그 콘텐츠 10건</div>
-    </div>
-    <div class="result">
-      ▶ 검색에서 클릭이 발생할 수 있게 세팅합니다
-    </div>
-  </div>
 
-  <!-- 유지 관리 -->
-  <div class="card">
-    <div class="badge">유지 관리 · 월</div>
-    <h3>네이버 플레이스 중심 ‘매출 유지 관리’</h3>
-    <div class="price">55만 원 / 월</div>
-    <div class="desc">
-      한 번 만들어진 초기 세팅도<br> <strong>방치하면 예약·문의부터 먼저 줄어듭니다.</strong><br><br>
-    </div>
-    <div class="list">
-      <div>· 네이버 플레이스 / 블로그 운영</div>
-      <div>· 블로그 콘텐츠 10건 발행</div>
-      <div>· 검색 → 클릭 → 문의 이탈 구간 점검</div>
-      <div>· 네이버 이벤트·프로모션 (월 1회 기획·적용)</div>
-      <div>· 경쟁 가게 대비 노출 구조 수시 대응</div>
-    </div>
-    <div class="result">
-      ▶ 문의·예약 수가 떨어지지 않도록 관리합니다
-    </div>
-  </div>
+    <!-- 집중 관리 -->
+    <div class="service-card">
+        <span class="service-tag">집중 관리 · 선택</span>
+        <h2 class="service-title">네이버 + 외부 유입 채널 확장</h2>
+        <div class="service-price">165만 원 / 월</div>
+        <p class="service-desc">경쟁 업체가 늘어날수록, <span class="highlight">네이버 단일 유입으로는 매출 변동을 막기 어렵습니다.</span></p>
+        
+        <ul class="service-list">
+            <li>네이버 플레이스 / 블로그 집중 관리</li>
+            <li>블로그 콘텐츠 20건</li>
+            <li>당근마켓·인스타그램 유입 연동</li>
+            <li>플랫폼별 이벤트·프로모션 (상시 기획·적용)</li>
+            <li>경쟁 가게 대비 노출 구조 수시 대응</li>
+        </ul>
 
-  <!-- 집중 관리 -->
-  <div class="card">
-    <div class="badge">집중 관리 · 선택</div>
-    <h3>네이버 + 외부 유입 채널 확장</h3>
-    <div class="price">110만 원 / 월</div>
-    <div class="desc">
-      경쟁 업체가 늘어날수록,<br> <strong>네이버 단일 유입으로는 매출 변동을 막기 어렵습니다.</strong><br><br>
+        <div class="service-note">네이버 + 외부 채널을 활용해 유입 경로를 넓힙니다</div>
     </div>
-    <div class="list">
-      <div>· 네이버 플레이스 / 블로그 집중 관리</div>
-      <div>· 블로그 콘텐츠 20건</div>
-      <div>· 당근마켓 · 인스타그램 유입 연동</div>
-      <div>· 플랫폼별 이벤트·프로모션 (상시 기획·적용)</div>
-      <div>· 경쟁 가게 대비 노출 구조 수시 대응</div>
+
+    <!-- 하단 안내 -->
+    <div class="info-box">
+        <div class="info-title">설명하지 않습니다.<br><span class="highlight">검색 결과로 보여드립니다.</span></div>
+        <p class="info-text">본 서비스는 검색 결과에서<br>고객이 사장님 가게를 선택하도록 돕는 작업이며,<br>특정 순위나 매출 상승을 보장하지 않습니다.</p>
     </div>
-    <div class="result">
-      ▶ 네이버 + 외부 채널을 활용해 유입 경로를 넓힙니다
-    </div>
-  </div>
-
-  <div class="footer">
-    설명하지 않습니다.<br>
-    <span class="highlight">검색 결과로 보여드립니다.</span>
-  </div>
-
-  <div class="notice">
-    본 서비스는 검색 결과에서<br> 고객이 사장님 가게를 선택하도록 돕는 작업이며,<br>
-    특정 순위나 매출 상승을 보장하지 않습니다.<br><br>
-  </div>
-
-</div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
